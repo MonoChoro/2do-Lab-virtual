@@ -15,16 +15,16 @@ app.get("/", async (req,res) => {       // "/" es un ENDPOINT
 })     
 //Create
 app.post("/Person", async (req, res) => {
-  const {name,salary,age,approved} = req.body
-  if(!name) {
+  const {dni,apellidos,nombres,edad} = req.body
+  if(!dni) {
     res.status(422).json({error: "Name is mandatory"})
     return
   }
   const person = {
-    name,
-    salary,
-    age,
-    approved,
+    dni,
+    apellidos,
+    nombres,
+    edad,
   }
 
   try {
@@ -56,16 +56,15 @@ app.get("/person/:id", async (req,res)=>{
     res.status(500).json({error:error}) 
   }
 })
-
 // UPDATE
-app.patch("/person/:id", async (req,res) => {
+app.patch("/person/:id", async (req,res) => { 
   const id = req.params.id
-  const {name, salary, age, approved } = req.body
+  const {dni, apellidos, nombres, edad } = req.body
   const person = {
-      name,
-      salary,
-      age,
-      approved, 
+      dni,
+      apellidos,
+      nombres,
+      edad, 
   }
 
   try{
@@ -106,4 +105,3 @@ mongoose.connect(
     .catch((err) => {
       console.log(err);
     })
-
